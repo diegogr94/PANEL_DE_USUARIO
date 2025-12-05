@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Usuarios</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js" defer></script>
+</head>
+
+<body>
+    <main>
+        <form id="formularioRegistro" class="escena oculto" action="#" method="post">
+            <header>
+                <h1>Crear Cuenta Nueva</h1>
+            </header>
+            
+            <section>
+                <div class="contenedorInput">
+                    <label for="nombreUsuario">Usuario:</label>
+                    <input id="nombreUsuario" type="text" placeholder="Escribe aqui tu nick de usuario">
+                    <span class="mensaje-error"></span>
+                </div>
+
+                <div class="contenedorInput">
+                    <label for="claveRegistro">Contraseña de acceso:</label>
+                    <div class="contenedorClave">
+                        <input id="claveRegistro" type="password" placeholder="Escribe aquí tu contraseña">
+                        <img src="./imagen/vista.png" id="verClaveRegistro" class="iconoOjo" alt="Mostrar">
+                    </div>
+                    <span class="mensaje-error"></span>
+                </div>
+            </section>
+
+            <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+
+            <section>
+                <div class="contenedorInput">
+                    <label for="telefonoUsuario">Teléfono móvil:</label>
+                    <input id="telefonoUsuario" type="number" placeholder="Escribe aquí tu contacto">
+                    <span class="mensaje-error"></span>
+                </div>
+
+                <div class="contenedorInput">
+                    <label for="codigoPostalUsuario">Código Postal (CP):</label>
+                    <input id="codigoPostalUsuario" type="number" placeholder="Escribe aquí tu CP">
+                    <span class="mensaje-error"></span>
+                </div>
+
+                <div id="contenedorMayorEdad">
+                    <input id="checkMayorEdad" type="checkbox">
+                    <label for="checkMayorEdad">Confirmo mayoría de edad</label>
+                    <span class="mensaje-error"></span>
+                </div>
+
+                <div id="divEdad" class="oculto">
+                    <label for="edadUsuario">Tu edad actual:</label>
+                    <input id="edadUsuario" type="number" placeholder="Escribe aquí tu edad">
+                    <span class="mensaje-error"></span>
+                </div>
+            </section>
+
+            <div class="acciones-form">
+                <button id="btnRegistro" class="botonEnviar bloqueado" type="submit" disabled>Registrarme</button>
+                <br>
+                <a href="#" id="linkIrLogin">Entra aquí (si ya estás registrado)</a>
+            </div>
+        </form>
+
+        <form id="formularioLogin" class="escena" action="#" method="post">
+            <header>
+                <h1>Acceso Clientes</h1>
+            </header>
+            
+            <div class="contenedorInput">
+                <label for="usuarioLogin">Usuario:</label>
+                <input id="usuarioLogin" type="text" placeholder="Escribe aquí tu usuario">
+            </div>
+
+            <div class="contenedorInput">
+                <label for="claveLogin">Contraseña:</label>
+                <div class="contenedorClave">
+                    <input id="claveLogin" type="password" placeholder="Escribe aquí tu contraseña">
+                    <img src="./imagen/vista.png" id="verClaveLogin" class="iconoOjo" alt="Mostrar">
+                </div>
+            </div>
+
+            <span id="mensajeFeedbackLogin" class="mensaje-error"></span>
+            
+            <div class="acciones-form">
+                <button id="btnLogin" class="botonEnviar" type="submit">Iniciar Sesión</button>
+                <a href="#" id="linkIrRegistro">Crear cuenta nueva</a>
+            </div>
+        </form>
+
+        <div id="panelUsuario" class="escena oculto">
+            <h1>Bienvenido/a</h1>
+            <p id="mensajeBienvenida"></p>
+            
+            <section class="menu-usuario">
+                <button id="btnCambiarTema">Cambia el tema de la aplicación</button>
+                <button id="btnCerrarSesion">Salir</button>
+            </section>
+        </div>
+    </main>
+    
+    <footer>
+        <div id="avisoCookies" class="oculto">
+            <div>
+                <p>Este sitio utiliza cookies para funcionar.</p>
+                <button id="btnAceptarCookies">Entendido</button>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

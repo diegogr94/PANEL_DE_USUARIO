@@ -1,0 +1,331 @@
+:root {
+  
+  --color-principal: #00897b;           
+  --color-principal-hover: #00796b;     
+  --color-principal-focus: rgba(0, 137, 123, 0.1); 
+  --color-enlace-hover: #00695c;
+  
+  --color-error: #d32f2f;
+  
+  --bg-body: #f0f2f5;
+  --bg-tarjeta: #ffffff;
+  --bg-input: #f8f9fa;
+  --bg-input-focus: #ffffff;
+  --bg-bloqueado: #b2dfdb;
+  
+  --texto-principal: #333333;
+  --texto-titulo: #2c3e50;
+  --texto-label: #555555;
+  --texto-boton: #ffffff;
+  --texto-bloqueado: #555555;
+  
+  --borde-input: #ced4da;
+  --borde-tarjeta: #e1e4e8;
+  
+  /* --- COOKIES --- */
+  --cookie-bg: #263238;
+  --cookie-texto: #ffffff;
+  --cookie-btn-bg: #ffffff;
+  --cookie-btn-texto: #263238;
+
+  
+  --fuente-principal: Verdana, Geneva, Tahoma, sans-serif;
+  --ancho-tarjeta: 400px;
+  --radio-borde: 6px;
+  --radio-input: 4px;
+  --sombra-tarjeta: 0 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+body.temaOscuro {
+  
+  --color-principal: #80cbc4;           
+  --color-principal-hover: #4db6ac;
+  --color-error: #ef5350;               
+  
+  --bg-body: #121212;
+  --bg-tarjeta: #1e1e1e;
+  --bg-input: #2c2c2c;
+  --bg-bloqueado: #424242;
+  
+  --texto-principal: #e0e0e0;
+  --texto-titulo: #ffffff;
+  --texto-label: #b0bec5;
+  --texto-boton: #121212;               
+  --texto-bloqueado: #757575;
+  
+  --borde-input: #444444;
+  --borde-tarjeta: #333333;
+  
+  --sombra-tarjeta: none;               
+  
+  --cookie-bg: #000000;
+}
+
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    
+    font-family: var(--fuente-principal);
+    background-color: var(--bg-body);
+    color: var(--texto-principal);
+    line-height: 1.6;
+}
+
+
+.oculto {
+    display: none !important;
+}
+
+
+.escena {
+    background-color: var(--bg-tarjeta);
+    width: var(--ancho-tarjeta); 
+    margin: 80px auto; 
+    padding: 40px 30px; 
+    border-radius: var(--radio-borde); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; 
+    box-shadow: var(--sombra-tarjeta);
+    border: 1px solid var(--borde-tarjeta);
+}
+
+h1 {
+    color: var(--texto-titulo); 
+    font-size: 1.8em; 
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: -0.5px;
+}
+
+
+.contenedorInput {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    text-align: left; 
+    margin-bottom: 12px;
+}
+
+label {
+    color: var(--texto-label); 
+    font-weight: 600;
+    font-size: 0.9em;
+    margin-left: 2px;
+}
+
+
+.contenedorInput input {
+    padding: 10px 12px; 
+    border-radius: var(--radio-input); 
+    border: 1px solid var(--borde-input);
+    background-color: var(--bg-input); 
+    color: var(--texto-principal); 
+    width: 100%;
+    font-size: 0.95em;
+    transition: border-color 0.2s;
+}
+
+.contenedorInput input:focus {
+    outline: none;
+    background-color: var(--bg-input-focus);
+    border-color: var(--color-principal); 
+    box-shadow: 0 0 0 3px var(--color-principal-focus);
+}
+
+
+.contenedorClave {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.contenedorClave input {
+    width: 100%;
+    padding-right: 35px;
+}
+
+.iconoOjo {
+    position: absolute;
+    right: 12px;
+    width: 20px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.iconoOjo:hover {
+    opacity: 1;
+}
+
+
+.mensaje-error {
+    display: block;      
+    font-size: 0.8em;
+    color: var(--color-error); 
+    min-height: 18px;
+    font-weight: 500;
+    margin-top: 5px;     
+}
+
+
+button {
+    width: 100%;
+    padding: 14px 0;
+    margin-top: 10px;
+    background-color: var(--color-principal); 
+    color: var(--texto-boton);
+    font-size: 1em;
+    font-weight: 600;
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    border: none;
+    border-radius: var(--radio-input); 
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--color-principal-hover);
+}
+
+.bloqueado {
+    background-color: var(--bg-bloqueado);
+    color: var(--texto-bloqueado);
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+
+a {
+    color: var(--color-principal); 
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: var(--color-enlace-hover);
+}
+
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9999;
+}
+
+#avisoCookies {
+    background-color: var(--cookie-bg); 
+    color: var(--cookie-texto);
+    padding: 20px;
+    text-align: center;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid transparent; 
+}
+
+#avisoCookies p {
+    margin: 0;
+    font-size: 0.95em;
+}
+
+#btnAceptarCookies {
+    width: auto;
+    margin: 0;
+    padding: 8px 24px;
+    background-color: var(--cookie-btn-bg);
+    color: var(--cookie-btn-texto);
+    border-radius: 50px; 
+}
+
+
+.temaOscuro #avisoCookies {
+    border-top: 1px solid #333;
+}
+
+.temaOscuro .iconoOjo {
+    filter: invert(100%);
+    opacity: 0.7;
+}
+
+
+
+body.temaOscuro {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.temaOscuro .escena {
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    box-shadow: none;
+}
+
+.temaOscuro h1 {
+    color: #ffffff;
+}
+
+.temaOscuro label {
+    color: #b0bec5;
+}
+
+.temaOscuro input {
+    background-color: #2c2c2c !important;
+    color: #fff !important;
+    border: 1px solid #444 !important;
+}
+
+.temaOscuro input:focus {
+    border-color: #80cbc4 !important; 
+}
+
+.temaOscuro .iconoOjo {
+    filter: invert(100%);
+    opacity: 0.7;
+}
+
+.temaOscuro .mensaje-error {
+    color: #ef5350; 
+}
+
+.temaOscuro button {
+    background-color: #80cbc4;
+    color: #121212; 
+}
+
+.temaOscuro button:hover {
+    background-color: #4db6ac;
+}
+
+.temaOscuro .bloqueado {
+    background-color: #424242;
+    color: #757575;
+}
+
+.temaOscuro a {
+    color: #80cbc4;
+}
+
+.temaOscuro #avisoCookies {
+    background-color: #000;
+    border-top: 1px solid #333;
+}
