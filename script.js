@@ -1,7 +1,7 @@
 import { showScene } from './utils/escenas.js';
 import { comprobarCookie } from './utils/cookies.js';
 import { formularioRegistro } from "./modules/registro.js"; 
-import { iniciarFormularioLogin, resetearFormularioLogin } from "./modules/inicioSesion.js"; 
+import { iniciarFormularioLogin, resetearFormularioLogin } from "./modules/login.js"; 
 import { mostrarPanelUsuario } from "./modules/panelUsuario.js"; 
 import { mostrarBannerCookies } from './modules/cookiesBanner.js'; 
 import { cargarTema, cambiarTema } from './modules/theme.js';

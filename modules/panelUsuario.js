@@ -1,6 +1,6 @@
 import { obtenerCookie, borrarCookie } from '../utils/cookies.js';
 import { showScene } from '../utils/escenas.js';
-import { resetearFormularioLogin } from './inicioSesion.js';
+import { resetearFormularioLogin } from './login.js';
 
 export function mostrarPanelUsuario() {
     
