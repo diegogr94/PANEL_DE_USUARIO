@@ -2,14 +2,14 @@ import { encriptarContrasenia } from '../utils/contrasenia.js';
 import { regexUser, regexPassword, regexAge, regexPhone, regexPostalCode } from '../utils/regex.js';
 import { showScene } from '../utils/escenas.js';
 
-// --- CONSTANTES DE ERROR ---
+
 const ERROR_USUARIO = "Necesitas 3 caracteres como mínimo. No puede haber espacios.";
 const ERROR_CONTRASENIA = "Necesitas 8 caracteres, 1 mayúscula y 1 minúscula como mínimo.";
 const ERROR_TELEFONO = "Necesitas 9 dígitos exactos.";
 const ERROR_CODIGO_POSTAL = "Necesitas 5 dígitos exactos.";
 const ERROR_EDAD = "La edad requerida es entre 18 y 99 años.";
 
-// --- VARIABLES DEL DOM ---
+
 let formRegistro = document.getElementById("formularioRegistro");
 let inputUsuario = document.getElementById("nombreUsuario");
 let inputContrasenia = document.getElementById("claveRegistro");
@@ -21,7 +21,7 @@ let inputEdad = document.getElementById("edadUsuario");
 let botonRegistro = document.getElementById("btnRegistro");
 let botonMostrarClave = document.getElementById("verClaveRegistro");
 
-// --- BANDERAS DE VALIDACIÓN ---
+
 let usuarioValido = false;
 let claveValida = false;
 let telefonoValido = false;
@@ -31,7 +31,11 @@ let edadValida = false;
 
 let formularioValido = false;
 
-// Función para comprobar si activamos el botón
+
+/**
+ * Comprueba el estado de todas las banderas de validación.
+ * Habilita o deshabilita el botón de registro y actualiza la variable `formularioValido`.
+ */
 function comprobarFormulario() {
     let todoCorrecto = false;
 
@@ -39,7 +43,7 @@ function comprobarFormulario() {
         todoCorrecto = true;
     }
 
-    // Si ha marcado la casilla de edad, obligamos a que la edad sea válida
+  
     if (usaEdad && !edadValida) {
         todoCorrecto = false;
     }
@@ -55,7 +59,12 @@ function comprobarFormulario() {
     }
 }
 
-//  VALIDACIONES INDIVIDUALES 
+
+/**
+ * Valida el nombre de usuario contra la expresión regular.
+ * Actualiza la interfaz (clases CSS y mensajes de error) según el resultado.
+ * @returns {boolean} True si la validación es correcta.
+ */
 function validarUsuario() {
     usuarioValido = regexUser.test(inputUsuario.value);
     
@@ -69,6 +78,13 @@ function validarUsuario() {
     return usuarioValido;
 }
 
+
+
+/**
+ * Valida la contraseña contra la expresión regular.
+ * Actualiza la interfaz (clases CSS y mensajes de error) según el resultado.
+ * @returns {boolean} True si la validación es correcta.
+ */
 function validarContrasenia() {
     claveValida = regexPassword.test(inputContrasenia.value);
 
@@ -85,6 +101,13 @@ function validarContrasenia() {
     return claveValida;
 }
 
+
+
+/**
+ * Valida el número de teléfono contra la expresión regular.
+ * Actualiza la interfaz (clases CSS y mensajes de error) según el resultado.
+ * @returns {boolean} True si la validación es correcta.
+ */
 function validarTelefono() {
     telefonoValido = regexPhone.test(inputTelefono.value);
 
@@ -98,6 +121,13 @@ function validarTelefono() {
     return telefonoValido;
 }
 
+
+
+/**
+ * Valida el código postal contra la expresión regular.
+ * Actualiza la interfaz (clases CSS y mensajes de error) según el resultado.
+ * @returns {boolean} True si la validación es correcta.
+ */
 function validarCodigoPostal() {
     codigoPostalValido = regexPostalCode.test(inputCodigoPostal.value);
 
@@ -111,6 +141,13 @@ function validarCodigoPostal() {
     return codigoPostalValido;
 }
 
+
+
+/**
+ * Valida la edad (si aplica) contra la expresión regular.
+ * Actualiza la interfaz (clases CSS y mensajes de error) según el resultado.
+ * @returns {boolean} True si la validación es correcta.
+ */
 function validarEdad() {
     edadValida = regexAge.test(inputEdad.value);
 
@@ -124,11 +161,19 @@ function validarEdad() {
     return edadValida;
 }
 
-// INICIO DE LA LÓGICA (EXPORT) 
 
+
+/**
+ * Inicializa el módulo de registro de usuarios.
+ * Configura los eventos (listeners) para:
+ * - Mostrar/Ocultar contraseña.
+ * - Habilitar el campo de edad condicionalmente.
+ * - Validar campos en el evento 'blur'.
+ * - Procesar el envío del formulario (submit), guardar en localStorage y redirigir.
+ */
 export function formularioRegistro() {
     
-    // Funcionalidad Ver Contraseña
+   
     botonMostrarClave.addEventListener("click", () => {
         if (inputContrasenia.type === "password") {
             inputContrasenia.type = "text";
@@ -139,7 +184,7 @@ export function formularioRegistro() {
         }
     });
 
-    // Checkbox Mayor de Edad
+  
     checkMayorEdad.addEventListener("change", () => {
         if (checkMayorEdad.checked) {
             usaEdad = true;
@@ -155,7 +200,7 @@ export function formularioRegistro() {
         comprobarFormulario();
     });
 
-    // Eventos Blur 
+  
     inputUsuario.addEventListener("blur", () => {
         validarUsuario();
         comprobarFormulario();
@@ -181,23 +226,23 @@ export function formularioRegistro() {
         comprobarFormulario();
     });
 
-    // Envío del Formulario
+    
     formRegistro.addEventListener('submit', async (evento) => {
         evento.preventDefault();
 
         if (formularioValido) {
             const nombreUsuario = inputUsuario.value;
 
-            // Comprobamos si ya existe en localStorage
+           
             if (localStorage.getItem(nombreUsuario)) {
                 alert("Usuario existente.");
                 return;
             }
 
-            // Encriptamos la contraseña
+            
             const contraseniaEncriptada = await encriptarContrasenia(inputContrasenia.value);
 
-            // Preparamos el objeto para guardar
+          
             const datosUsuario = {
                 password: contraseniaEncriptada,
                 phone: inputTelefono.value,
@@ -206,13 +251,13 @@ export function formularioRegistro() {
                 age: checkMayorEdad.checked ? inputEdad.value : null
             };
 
-            // Guardamos y redirigimos
+           
             localStorage.setItem(nombreUsuario, JSON.stringify(datosUsuario));
             alert("Has completado bien tu registro.");
             
             formRegistro.reset();
             
-            // Forzamos el reset visual de los estilos
+           
             [inputUsuario, inputContrasenia, inputTelefono, inputCodigoPostal, inputEdad].forEach(input => {
                 input.className = "";
                 
